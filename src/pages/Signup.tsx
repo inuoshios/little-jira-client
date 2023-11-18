@@ -96,7 +96,7 @@ function SignUp() {
               <label htmlFor="lastName" className="text-[15px] block mb-2">Last Name</label>
               <input
                 type="text"
-                value={first_name}
+                value={last_name}
                 onChange={(e) => setLastName(e.target.value)}
                 placeholder="Enter last name"
                 className="w-[203px] bg-inputFieldColor p-3 rounded-[6px] border-[1px] border-solid text-[13px] outline-none"
