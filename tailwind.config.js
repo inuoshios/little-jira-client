@@ -11,6 +11,10 @@ export default {
       },
       colors: {
         spanColor: "#4486F9"
+      },
+      backgroundColor: {
+        inputFieldColor: "#FBFBFB",
+        buttonColorS: "#7367F0"
       }
     },
   },
