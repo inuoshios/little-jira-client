@@ -1,17 +1,17 @@
 import SyncateLogo from "../assets/littlejira-logo.svg";
 import SidePicture from "../assets/littlejira-temp.svg";
-import SignUpForm from "../components/SignUpForm";
+import SignInForm from "../components/SignInForm";
 
-function SignUp() {
+function Login() {
   return (
     <div className="w-100 flex justify-center items-center space-x-28">
       <div>
         <img className="w-[150px]" src={SyncateLogo} alt="syncate logo" />
 
         <h1 className="text-[25px] font-extrabold mt-8">Sign up</h1>
-        <p className="text-[15px] text-[#636363]">Have an account? <span className="text-spanColor">Sign in</span></p>
+        <p className="text-[15px] text-[#636363]">New to Syncate? <span className="text-spanColor">Create an account</span></p>
 
-        <SignUpForm />
+        <SignInForm />
 
       </div>
       <div className="m-auto">
@@ -23,4 +23,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default Login;
