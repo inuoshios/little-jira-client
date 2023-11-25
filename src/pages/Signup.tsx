@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
 import SyncateLogo from "../assets/littlejira-logo.svg";
 import SidePicture from "../assets/littlejira-temp.svg";
 import SignUpForm from "../components/SignUpForm";
+
 
 function SignUp() {
   return (
@@ -9,7 +11,9 @@ function SignUp() {
         <img className="w-[150px]" src={SyncateLogo} alt="syncate logo" />
 
         <h1 className="text-[25px] font-extrabold mt-8">Sign up</h1>
-        <p className="text-[15px] text-[#636363]">Have an account? <span className="text-spanColor">Sign in</span></p>
+        <p className="text-[15px] text-[#636363]">Have an account?
+          <Link to={'/signin'}><span className="text-spanColor"> Sign in</span></Link>
+        </p>
 
         <SignUpForm />
 

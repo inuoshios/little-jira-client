@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import SyncateLogo from "../assets/littlejira-logo.svg";
 import SidePicture from "../assets/littlejira-temp.svg";
 import SignInForm from "../components/SignInForm";
@@ -8,8 +9,10 @@ function Login() {
       <div>
         <img className="w-[150px]" src={SyncateLogo} alt="syncate logo" />
 
-        <h1 className="text-[25px] font-extrabold mt-8">Sign up</h1>
-        <p className="text-[15px] text-[#636363]">New to Syncate? <span className="text-spanColor">Create an account</span></p>
+        <h1 className="text-[25px] font-extrabold mt-8">Sign In</h1>
+        <p className="text-[15px] text-[#636363]">New to Syncate?
+          <Link to={'/signup'}><span className="text-spanColor"> Create an account</span></Link>
+        </p>
 
         <SignInForm />
 

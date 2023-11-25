@@ -1,5 +1,6 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 import config from "../utils";
 
 function SignUpForm() {
@@ -8,12 +9,15 @@ function SignUpForm() {
   const [isCompleted, setIsCompleted] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
+  const { setItem } = useLocalStorage("accessToken");
+
   async function submitForm(e: React.MouseEvent) {
     try {
       e.preventDefault();
       setIsCompleted(true);
-      const response = await axios.post(`${config.apiUrl}/user/signin`, { username, password });
-      console.log(response.data);
+      const { data } = await axios.post(`${config.apiUrl}/user/signin`, { username, password });
+      const { access_token } = data;
+      setItem(access_token);
     } catch (err: any) {
       if (err.response) {
         setErrorMessage(err.response.data);
