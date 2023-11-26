@@ -3,7 +3,7 @@ import SyncateLogo from "../assets/littlejira-logo.svg";
 import SidePicture from "../assets/littlejira-temp.svg";
 import SignInForm from "../components/SignInForm";
 
-function Login() {
+function SignIn() {
   return (
     <div className="w-100 flex justify-center items-center space-x-28">
       <div>
@@ -26,4 +26,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default SignIn;

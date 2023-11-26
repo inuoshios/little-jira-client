@@ -12,7 +12,7 @@ function SignUp() {
 
         <h1 className="text-[25px] font-extrabold mt-8">Sign up</h1>
         <p className="text-[15px] text-[#636363]">Have an account?
-          <Link to={'/signin'}><span className="text-spanColor"> Sign in</span></Link>
+          <Link to={'/'}><span className="text-spanColor"> Sign in</span></Link>
         </p>
 
         <SignUpForm />

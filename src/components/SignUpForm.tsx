@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useLocalStorage } from "../hooks/useLocalStorage";
+import { Navigate } from "react-router-dom";
 import config from "../utils";
 
 function SignUpForm() {
@@ -20,8 +20,7 @@ function SignUpForm() {
     gender: "",
     password: ""
   });
-
-  const { setItem } = useLocalStorage("accessToken");
+  const [success, setSuccess] = useState(false);
 
   async function submitForm(e: React.MouseEvent) {
     try {
@@ -56,9 +55,10 @@ function SignUpForm() {
       }
 
       setIsCompleted(true);
-      const { data } = await axios.post(`${config.apiUrl}/user/signup`, { username, first_name, last_name, email, gender, password });
-      const { access_token } = data;
-      setItem(access_token);
+      await axios.post(`${config.apiUrl}/user/signup`, { username, first_name, last_name, email, gender, password });
+      console.log("user created successfully");
+
+      setSuccess(true);
     } catch (err: any) {
       if (err.response) {
         setErrorMessage(err.response.data);
@@ -70,6 +70,9 @@ function SignUpForm() {
       setIsCompleted(false);
     }
   }
+
+  // if signup is successful, navigate to signin
+  if (success) return <Navigate to="/" />;
 
   return (
     <form action="">
