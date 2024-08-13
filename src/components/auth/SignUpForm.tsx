@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
-import config from "../utils";
+import config from "../../utils";
 
 function SignUpForm() {
   const [username, setUsername] = useState("");
@@ -55,7 +55,10 @@ function SignUpForm() {
       }
 
       setIsCompleted(true);
-      await axios.post(`${config.apiUrl}/user/signup`, { username, first_name, last_name, email, gender, password });
+      await axios.post(
+        `${config.apiUrl}/user/signup`,
+        { username, first_name, last_name, email, gender, password }
+      );
       console.log("user created successfully");
 
       setSuccess(true);
@@ -65,7 +68,7 @@ function SignUpForm() {
       } else {
         setErrorMessage("An error occured while signing up");
       }
-      console.error("An error occured while signing up", err);
+      console.error("An error occured while signing up", err.message);
     } finally {
       setIsCompleted(false);
     }

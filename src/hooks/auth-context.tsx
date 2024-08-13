@@ -1,30 +1,27 @@
-import { ReactNode, createContext, useState } from "react";
-import { useLocalStorage } from "./useLocalStorage";
+import React, { useEffect, useState } from "react";
+import { useLocalStorage } from "../utils/useLocalStorage";
 
-export interface AuthContextType {
-  isLoggedIn: boolean;
-  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>,
-  token: string | undefined | null;
-  setToken: React.Dispatch<React.SetStateAction<string | undefined | null>>
+interface Props {
+  children: React.ReactNode
 }
 
-interface AuthContextProviderProps {
-  children: ReactNode;
+const AuthProvider: React.FC<Props> = ({ children }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState<null | boolean>(null);
+
+  useEffect(() => {
+    const checkAuthStatus = () => {
+      const { getItem } = useLocalStorage("accessToken");
+      if (getItem!) {
+        setIsAuthenticated(true);
+      } else {
+        setIsAuthenticated(false);
+      }
+    };
+
+    checkAuthStatus();
+  }, []);
+
+  return children;
 }
 
-export const AuthContext = createContext({} as AuthContextType);
-
-export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [token, setToken] = useState<string | undefined | null>(undefined);
-
-  const { getItem: accessToken } = useLocalStorage('accessToken')
-  setIsLoggedIn(true);
-  setToken(accessToken)
-
-  return (
-    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, token, setToken }}>
-      {children}
-    </AuthContext.Provider>
-  )
-}
+export default AuthProvider;

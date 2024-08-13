@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import SyncateLogo from "../assets/littlejira-logo.svg";
-import SidePicture from "../assets/littlejira-temp.svg";
-import SignInForm from "../components/SignInForm";
+import SyncateLogo from "../../assets/littlejira-logo.svg";
+import SidePicture from "../../assets/littlejira-temp.svg";
+import SignInForm from "../../components/auth/SignInForm";
 
 function SignIn() {
   return (

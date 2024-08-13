@@ -1,29 +1,36 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useLocalStorage } from "../hooks/useLocalStorage";
-import config from "../utils/index";
+import { useNavigate } from "react-router-dom";
+import config from "../../utils/index";
+import { useLocalStorage } from "../../utils/useLocalStorage";
 
-function SignUpForm() {
+function SignInForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isCompleted, setIsCompleted] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
-  const { setItem, getItem } = useLocalStorage("accessToken");
+  const { setItem } = useLocalStorage("accessToken");
 
   async function submitForm(e: React.MouseEvent) {
+    console.log(`${config.apiUrl}/user/signin`);
     try {
       e.preventDefault();
       setIsCompleted(true);
-      const { data } = await axios.post(`${config.apiUrl}/user/signin`, { username, password });
-      setItem(data);
+      const { data } = await axios.post(
+        `${config.apiUrl}/user/signin`,
+        { username, password },
+      );
+      setItem(data.access_token);
+      navigate("/dashboard");
     } catch (err: any) {
       if (err.response) {
         setErrorMessage(err.response.data);
       } else {
-        setErrorMessage("An error occured while signing up");
+        setErrorMessage("An error occured while signing in");
       }
-      console.error("An error occured while signing up", err);
+      console.error("An error occured while signing in", err);
     } finally {
       setIsCompleted(false);
     }
@@ -67,4 +74,4 @@ function SignUpForm() {
   );
 }
 
-export default SignUpForm;
+export default SignInForm;

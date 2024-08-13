@@ -4,6 +4,7 @@ export const useLocalStorage = (key: string) => {
       window.localStorage.setItem(key, JSON.stringify(value));
     } catch (err) {
       console.log(err);
+      throw new Error('An error occurred, please try again');
     }
   };
 
@@ -13,6 +14,7 @@ export const useLocalStorage = (key: string) => {
       return item;
     } catch (err) {
       console.log(err);
+      throw new Error('An error occurred, please try again');
     }
   };
 
@@ -21,6 +23,7 @@ export const useLocalStorage = (key: string) => {
       window.localStorage.removeItem(key);
     } catch (err) {
       console.log(err);
+      throw new Error('An error occurred, please try again');
     }
   };
 
